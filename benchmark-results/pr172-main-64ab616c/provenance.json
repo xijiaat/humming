@@ -1,0 +1,20 @@
+{
+  "upstream": "https://github.com/vllm-project/humming",
+  "baseline_sha": "64ab616cc26e6d5e4000a8fc3022814d2abd90bb",
+  "candidate": "baseline + PR172 kernel-only diff",
+  "patch_from_base": "81402fe03040e1233afeea88f3420db7ba01302d",
+  "patch_from_head": "2e8e8972e8558ebc5cfa2e6f4f1d478c91d50575",
+  "test_source": "2e8e8972e8558ebc5cfa2e6f4f1d478c91d50575:tests/kernels/humming/test_mxfp4.py",
+  "suite_orders": {
+    "native": ["base172", "post172", "post172", "base172", "base172", "post172", "post172", "base172"],
+    "experts_tp_models_each": ["base172", "post172", "post172", "base172"]
+  },
+  "seed": 2026,
+  "main_archive_sha256": "6f45a4130f39e3ca4e0c47d07462caffd2e53de204ec990934ac1c96270fb1b6",
+  "kernel_patch_sha256": "50aa63ec4e49ed883392b35f76c174359e6d9ae92798a5fc7fd6fdda6beeb634",
+  "benchmark_sha256": "9552406fc68e74cb8c4583bbfe4c0c5c0e8f1ea0c1219d194c6964fffb8f419a",
+  "timing": "Native/expert suites invoke upstream bench_humming; TP/model suites construct mapped shapes. All use native heuristics and triton.testing.do_bench warmup=100, rep=1000.",
+  "vllm_source_sha": "c325754771a123330e55928094c8049d7b997db2",
+  "clocks_locked": false,
+  "notes": "Each suite compares both arms on the same idle H20 GPU; suites may overlap on different GPUs on one host. Separate source/JIT caches. No model requests or service changes. This is not a full-model or all-shape guarantee."
+}

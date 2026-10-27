@@ -1,0 +1,148 @@
+diff --git a/humming/include/humming/arith/mainloop_arith.cuh b/humming/include/humming/arith/mainloop_arith.cuh
+index 1b605f6..6f22a80 100644
+--- a/humming/include/humming/arith/mainloop_arith.cuh
++++ b/humming/include/humming/arith/mainloop_arith.cuh
+@@ -153,8 +153,8 @@ public:
+   };
+ 
+   CUDA_INLINE
+-  void may_apply_bs_and_zp_on_b(uint32_t *regs_b, uint32_t j, uint32_t buffer_id) {
+-    may_process_bs_before_apply_on_b(j, buffer_id);
++  void may_apply_bs_and_zp_on_b(uint32_t *regs_b, uint32_t j, uint32_t buffer_id, bool reuse_bs = false) {
++    if (!reuse_bs) may_process_bs_before_apply_on_b(j, buffer_id);
+ 
+     if constexpr (ElementA::kBits == 16 && kExpOffset.x) {
+       uint32_t exp_val = kExpOffset.x + ((1 << (ElementA::kExponentBits - 1)) - 1);
+diff --git a/humming/include/humming/epilogue/smem_writer.cuh b/humming/include/humming/epilogue/smem_writer.cuh
+index aafb142..2834890 100644
+--- a/humming/include/humming/epilogue/smem_writer.cuh
++++ b/humming/include/humming/epilogue/smem_writer.cuh
+@@ -116,6 +116,44 @@ public:
+     if (ctx.k_warp_id() != 0) return;
+ 
+     auto &regs = *reinterpret_cast<CRegistersArrayType *>(regs_ptr);
++
++#if defined(__CUDA_ARCH__) && __CUDA_ARCH__ >= 900 && !USE_PPU
++    // The unshuffled FP32 pairs have the stmatrix.trans source layout.
++    constexpr bool kMatrixStore = kUseWgmma && !Ctx::kUseStreamK && !Ctx::kUseWgmmaSs &&
++        !Ctx::kUseWgmmaSsNLayout && !Ctx::kUsePackedKLayout &&
++        std::is_same<ElementA, BFloat16>::value &&
++        std::is_same<ElementC, BFloat16>::value &&
++        std::is_same<ValTypeC, float>::value &&
++        BlockShape::M == 8 && WarpShape::M == 8 && WarpShape::N == 64 &&
++        K_WARPS == 1 && kOutputRows == 8 && !Ctx::kOutputChunkRows &&
++        !Ctx::kHasBias && !Ctx::kHasInputScale && !Ctx::kHasInputScale2 &&
++        !Ctx::kHasChannelWeightScale && !Ctx::kHasTensorWeightScale;
++    if constexpr (kMatrixStore) {
++      static_assert(sizeof(regs) == 8 * sizeof(float2));
++      const auto *pairs = reinterpret_cast<const float2 *>(&regs);
++      const uint32_t lane = ctx.lane_id();
++      const uint32_t row = lane % 8;
++      const uint32_t phase = offsetof(SharedStorage, reduce) / 128 % 8;
++      const uint32_t base = cast_smem_ptr_to_uint(ctx.smem.reduce);
++      PRAGMA_UNROLL
++      for (uint32_t group = 0; group < 2; ++group) {
++        uint32_t values[4];
++        PRAGMA_UNROLL
++        for (uint32_t i = 0; i < 4; ++i) {
++          float2 value = pairs[group * 4 + i];
++          arith.may_apply_f32_on_smem_write(value, 0, group * 4 + i);
++          auto packed = this->float22num2(value);
++          values[i] = *reinterpret_cast<uint32_t *>(&packed);
++          arith.may_apply_on_smem_write(values[i], 0, group * 4 + i);
++        }
++        const uint32_t fragment = group * 4 + lane / 8;
++        const uint32_t offset = ctx.n_warp_id() * 8 * 64 + row * 64 +
++            (fragment ^ ((row + phase) % 8)) * 8;
++        st_shared<4, true>(base + offset * 2, values);
++      }
++      return;
++    }
++#endif
+     scalar_t2 *smem_half2_ptr = reinterpret_cast<scalar_t2 *>(ctx.smem.reduce);
+     uint32_t smem = offsetof(SharedStorage, reduce) / 128 % 8;
+     using PackTypeC = std::conditional_t<
+diff --git a/humming/include/humming/kernel/humming.cuh b/humming/include/humming/kernel/humming.cuh
+index 3f02235..28f7a21 100644
+--- a/humming/include/humming/kernel/humming.cuh
++++ b/humming/include/humming/kernel/humming.cuh
+@@ -134,6 +134,26 @@ __global__ __launch_bounds__(TuningConfig::kNumThreads, TuningConfig::kNumCtasPe
+       if (remaining_iters == 1) producer.load_channel();
+       PRAGMA_UNROLL
+       for (uint32_t warp_iter_id = 0; warp_iter_id < Ctx::kWarpIters; warp_iter_id++) {
++        constexpr bool kOverlapBDequant = [] {
++          if constexpr (Ctx::kUseWgmma) return MMA::kOverlapBDequant;
++          else return false;
++        }();
++        if constexpr (kOverlapBDequant) {
++          if (warp_iter_id % 2 == 0) {
++            // Prepare the other RS buffer while this fragment is in flight.
++            mma.issue(stage_id, warp_iter_id);
++            s2r_pipe.load_stage_iter(stage_id, warp_iter_id + 1);
++            mma.transform_b(1, warp_iter_id + 1);
++            mma.wait_and_promote(stage_id, warp_iter_id);
++            mma.preserve_rs_input(warp_iter_id % 2);
++            if (warp_iter_id == Ctx::kWarpIters - 2) {
++              __syncthreads();
++              if constexpr (kNumStages > 2)
++                producer.load_stage(stage_id + kNumStages - 1, remaining_iters >= kNumStages);
++            }
++            continue;
++          }
++        }
+         if constexpr (Ctx::kWgmmaSplitIssueWait) {
+           mma.issue(stage_id, warp_iter_id);
+           if constexpr (Ctx::kWarpIters == 1) {
+diff --git a/humming/include/humming/mma/wgmma.cuh b/humming/include/humming/mma/wgmma.cuh
+index d5a7caf..354f856 100644
+--- a/humming/include/humming/mma/wgmma.cuh
++++ b/humming/include/humming/mma/wgmma.cuh
+@@ -45,6 +45,23 @@ public:
+   static constexpr uint32_t kPackedKFactor = Ctx::kPackedKFactor;
+   static constexpr uint32_t kWarpIters = Ctx::kWarpIters;
+   static constexpr uint32_t kNumKSlabs = WarpShape::K / kPartMmaShapeK;
++  // Adjacent K16 fragments share one aligned K32 scale group.
++  static constexpr bool kReuseBScaleAcrossFragments =
++      std::is_same<ElementA, BFloat16>::value &&
++      std::is_same<ElementB, BFloat16>::value &&
++      std::is_same<ElementQB, Float4E2M1>::value &&
++      std::is_same<typename Ctx::ElementBS, Float8E8M0>::value &&
++      !kHasZeroPoint && !kUsePackedKLayout && !kUseFusedE8m0Scale &&
++      !Ctx::kUseWarpSpec && !Ctx::kUseIntWeightScale &&
++      Ctx::kIsGroupWeightScale && Ctx::kWeightScaleGroupSize == 32 &&
++      WarpShape::N == 64 && WarpShape::K % 32 == 0 &&
++      BlockShape::K % 32 == 0 && MmaOpClass::kCTypeBits == 32;
++
++  static constexpr bool kOverlapBDequant = kReuseBScaleAcrossFragments &&
++      !Ctx::kUseStreamK && !Ctx::kUseWgmmaSs && !Ctx::kUseWgmmaSsKBatch &&
++      !Ctx::kUseLdmatrixDequant && WarpShape::M == 8 &&
++      kWarpIters == 4 && BlockShape::K == WarpShape::K;
++
+   static constexpr uint32_t kRegsBKDim = kUsePackedKLayout ? kNumKSlabs : (kPartMmaShapeK / MmaShape::K);
+ 
+   Ctx &ctx;
+@@ -117,7 +134,8 @@ public:
+           regs_b_ptr[1] = regs_b_ptr[2];
+           regs_b_ptr[2] = tmp;
+         }
+-        arith.may_apply_bs_and_zp_on_b(regs_b_ptr, i, buffer_id);
++        arith.may_apply_bs_and_zp_on_b(
++            regs_b_ptr, i, buffer_id, kReuseBScaleAcrossFragments && iter_id % 2 != 0);
+       };
+     }
+   };
+@@ -211,6 +229,14 @@ public:
+     }
+   };
+ 
++  CUDA_INLINE void preserve_rs_input(uint32_t buffer_id) {
++    // Keep the asynchronous MMA's input registers live through its wait.
++    auto *values = reinterpret_cast<uint32_t *>(regs_b[buffer_id]);
++    PRAGMA_UNROLL
++    for (uint32_t r = 0; r < sizeof(regs_b[0]) / sizeof(uint32_t); ++r)
++      warpgroup_fence_operand(values[r]);
++  }
++
+   CUDA_INLINE void run(uint32_t stage_id, uint32_t iter_id) {
+     issue(stage_id, iter_id);
+     wait_and_promote(stage_id, iter_id);

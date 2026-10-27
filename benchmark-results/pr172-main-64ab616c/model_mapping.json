@@ -1,0 +1,2172 @@
+[
+  {
+    "model": "openai/gpt-oss-20b",
+    "shape": "w13",
+    "n": 5760,
+    "k": 2880,
+    "tp": 1,
+    "ep": 1,
+    "experts": 32,
+    "topk": 4,
+    "bias": true,
+    "source": "https://huggingface.co/openai/gpt-oss-20b/raw/main/config.json",
+    "layer_config": {
+      "sm_version": 90,
+      "shape_n": 5888,
+      "shape_k": 2944,
+      "pad_shape_n": 128,
+      "pad_shape_k": 64,
+      "num_experts": 32,
+      "b_dtype": "float4e2m1",
+      "a_dtype": "bfloat16",
+      "c_dtype": "bfloat16",
+      "bs_dtype": "float8e8m0",
+      "as_dtype": null,
+      "input_quant_mode": "none",
+      "input_scale_group_size": 0,
+      "weight_scale_group_size": 32,
+      "weight_scale_group_size_n": 0,
+      "weight_scale_type": "group",
+      "weight_scale_2_type": "none",
+      "use_int_weight_scale": false,
+      "use_fused_e8m0_scale": false,
+      "has_zero_point": false,
+      "is_fp_zero_point": false,
+      "has_bias": true,
+      "use_packed_k_layout": false
+    },
+    "tuning_config": [
+      [
+        0,
+        1,
+        {
+          "block_shape": [
+            8,
+            128,
+            128
+          ],
+          "warp_shape": [
+            8,
+            32,
+            32
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        1,
+        2,
+        {
+          "block_shape": [
+            8,
+            128,
+            64
+          ],
+          "warp_shape": [
+            8,
+            32,
+            32
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        2,
+        4,
+        {
+          "block_shape": [
+            8,
+            256,
+            64
+          ],
+          "warp_shape": [
+            8,
+            32,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        4,
+        128,
+        {
+          "block_shape": [
+            8,
+            256,
+            64
+          ],
+          "warp_shape": [
+            8,
+            64,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 3,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        128,
+        200,
+        {
+          "block_shape": [
+            8,
+            256,
+            64
+          ],
+          "warp_shape": [
+            8,
+            32,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        200,
+        264,
+        {
+          "block_shape": [
+            16,
+            256,
+            64
+          ],
+          "warp_shape": [
+            16,
+            64,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 3,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        264,
+        408,
+        {
+          "block_shape": [
+            16,
+            256,
+            64
+          ],
+          "warp_shape": [
+            16,
+            32,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        408,
+        632,
+        {
+          "block_shape": [
+            24,
+            256,
+            64
+          ],
+          "warp_shape": [
+            24,
+            32,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        632,
+        848,
+        {
+          "block_shape": [
+            32,
+            256,
+            64
+          ],
+          "warp_shape": [
+            32,
+            32,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        848,
+        1088,
+        {
+          "block_shape": [
+            40,
+            256,
+            64
+          ],
+          "warp_shape": [
+            40,
+            64,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        1088,
+        2080,
+        {
+          "block_shape": [
+            48,
+            128,
+            64
+          ],
+          "warp_shape": [
+            48,
+            32,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        2080,
+        2368,
+        {
+          "block_shape": [
+            40,
+            256,
+            64
+          ],
+          "warp_shape": [
+            40,
+            64,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        2368,
+        1073741824,
+        {
+          "block_shape": [
+            48,
+            128,
+            64
+          ],
+          "warp_shape": [
+            48,
+            32,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ]
+    ]
+  },
+  {
+    "model": "openai/gpt-oss-20b",
+    "shape": "w2",
+    "n": 2880,
+    "k": 2880,
+    "tp": 1,
+    "ep": 1,
+    "experts": 32,
+    "topk": 4,
+    "bias": true,
+    "source": "https://huggingface.co/openai/gpt-oss-20b/raw/main/config.json",
+    "layer_config": {
+      "sm_version": 90,
+      "shape_n": 3072,
+      "shape_k": 2944,
+      "pad_shape_n": 192,
+      "pad_shape_k": 64,
+      "num_experts": 32,
+      "b_dtype": "float4e2m1",
+      "a_dtype": "bfloat16",
+      "c_dtype": "bfloat16",
+      "bs_dtype": "float8e8m0",
+      "as_dtype": null,
+      "input_quant_mode": "none",
+      "input_scale_group_size": 0,
+      "weight_scale_group_size": 32,
+      "weight_scale_group_size_n": 0,
+      "weight_scale_type": "group",
+      "weight_scale_2_type": "none",
+      "use_int_weight_scale": false,
+      "use_fused_e8m0_scale": false,
+      "has_zero_point": false,
+      "is_fp_zero_point": false,
+      "has_bias": true,
+      "use_packed_k_layout": false
+    },
+    "tuning_config": [
+      [
+        0,
+        1,
+        {
+          "block_shape": [
+            8,
+            128,
+            128
+          ],
+          "warp_shape": [
+            8,
+            32,
+            32
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 72,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        1,
+        2,
+        {
+          "block_shape": [
+            8,
+            128,
+            128
+          ],
+          "warp_shape": [
+            8,
+            32,
+            32
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        2,
+        4,
+        {
+          "block_shape": [
+            8,
+            128,
+            64
+          ],
+          "warp_shape": [
+            8,
+            32,
+            32
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        4,
+        48,
+        {
+          "block_shape": [
+            8,
+            256,
+            64
+          ],
+          "warp_shape": [
+            8,
+            32,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        48,
+        128,
+        {
+          "block_shape": [
+            8,
+            512,
+            64
+          ],
+          "warp_shape": [
+            8,
+            64,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 3,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        128,
+        200,
+        {
+          "block_shape": [
+            8,
+            256,
+            64
+          ],
+          "warp_shape": [
+            8,
+            32,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        200,
+        264,
+        {
+          "block_shape": [
+            16,
+            512,
+            64
+          ],
+          "warp_shape": [
+            16,
+            64,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 3,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        264,
+        408,
+        {
+          "block_shape": [
+            16,
+            256,
+            64
+          ],
+          "warp_shape": [
+            16,
+            32,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        408,
+        632,
+        {
+          "block_shape": [
+            24,
+            256,
+            64
+          ],
+          "warp_shape": [
+            24,
+            32,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        632,
+        848,
+        {
+          "block_shape": [
+            32,
+            256,
+            64
+          ],
+          "warp_shape": [
+            32,
+            32,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        848,
+        1088,
+        {
+          "block_shape": [
+            40,
+            256,
+            64
+          ],
+          "warp_shape": [
+            40,
+            64,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        1088,
+        2080,
+        {
+          "block_shape": [
+            48,
+            128,
+            64
+          ],
+          "warp_shape": [
+            48,
+            32,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        2080,
+        2368,
+        {
+          "block_shape": [
+            40,
+            256,
+            64
+          ],
+          "warp_shape": [
+            40,
+            64,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        2368,
+        1073741824,
+        {
+          "block_shape": [
+            48,
+            128,
+            64
+          ],
+          "warp_shape": [
+            48,
+            32,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ]
+    ]
+  },
+  {
+    "model": "openai/gpt-oss-120b",
+    "shape": "w13",
+    "n": 5760,
+    "k": 2880,
+    "tp": 1,
+    "ep": 1,
+    "experts": 128,
+    "topk": 4,
+    "bias": true,
+    "source": "https://huggingface.co/openai/gpt-oss-120b/raw/main/config.json",
+    "layer_config": {
+      "sm_version": 90,
+      "shape_n": 5888,
+      "shape_k": 2944,
+      "pad_shape_n": 128,
+      "pad_shape_k": 64,
+      "num_experts": 128,
+      "b_dtype": "float4e2m1",
+      "a_dtype": "bfloat16",
+      "c_dtype": "bfloat16",
+      "bs_dtype": "float8e8m0",
+      "as_dtype": null,
+      "input_quant_mode": "none",
+      "input_scale_group_size": 0,
+      "weight_scale_group_size": 32,
+      "weight_scale_group_size_n": 0,
+      "weight_scale_type": "group",
+      "weight_scale_2_type": "none",
+      "use_int_weight_scale": false,
+      "use_fused_e8m0_scale": false,
+      "has_zero_point": false,
+      "is_fp_zero_point": false,
+      "has_bias": true,
+      "use_packed_k_layout": false
+    },
+    "tuning_config": [
+      [
+        0,
+        1,
+        {
+          "block_shape": [
+            8,
+            128,
+            128
+          ],
+          "warp_shape": [
+            8,
+            32,
+            32
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        1,
+        2,
+        {
+          "block_shape": [
+            8,
+            128,
+            64
+          ],
+          "warp_shape": [
+            8,
+            32,
+            32
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        2,
+        4,
+        {
+          "block_shape": [
+            8,
+            256,
+            64
+          ],
+          "warp_shape": [
+            8,
+            32,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        4,
+        520,
+        {
+          "block_shape": [
+            8,
+            256,
+            64
+          ],
+          "warp_shape": [
+            8,
+            64,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 3,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        520,
+        808,
+        {
+          "block_shape": [
+            8,
+            256,
+            64
+          ],
+          "warp_shape": [
+            8,
+            32,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        808,
+        1024,
+        {
+          "block_shape": [
+            16,
+            256,
+            64
+          ],
+          "warp_shape": [
+            16,
+            64,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 3,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        1024,
+        1648,
+        {
+          "block_shape": [
+            16,
+            256,
+            64
+          ],
+          "warp_shape": [
+            16,
+            32,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        1648,
+        2496,
+        {
+          "block_shape": [
+            24,
+            256,
+            64
+          ],
+          "warp_shape": [
+            24,
+            32,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        2496,
+        3360,
+        {
+          "block_shape": [
+            32,
+            256,
+            64
+          ],
+          "warp_shape": [
+            32,
+            32,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        3360,
+        4288,
+        {
+          "block_shape": [
+            40,
+            256,
+            64
+          ],
+          "warp_shape": [
+            40,
+            64,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        4288,
+        8320,
+        {
+          "block_shape": [
+            48,
+            128,
+            64
+          ],
+          "warp_shape": [
+            48,
+            32,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        8320,
+        9472,
+        {
+          "block_shape": [
+            40,
+            256,
+            64
+          ],
+          "warp_shape": [
+            40,
+            64,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        9472,
+        1073741824,
+        {
+          "block_shape": [
+            48,
+            128,
+            64
+          ],
+          "warp_shape": [
+            48,
+            32,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ]
+    ]
+  },
+  {
+    "model": "openai/gpt-oss-120b",
+    "shape": "w2",
+    "n": 2880,
+    "k": 2880,
+    "tp": 1,
+    "ep": 1,
+    "experts": 128,
+    "topk": 4,
+    "bias": true,
+    "source": "https://huggingface.co/openai/gpt-oss-120b/raw/main/config.json",
+    "layer_config": {
+      "sm_version": 90,
+      "shape_n": 3072,
+      "shape_k": 2944,
+      "pad_shape_n": 192,
+      "pad_shape_k": 64,
+      "num_experts": 128,
+      "b_dtype": "float4e2m1",
+      "a_dtype": "bfloat16",
+      "c_dtype": "bfloat16",
+      "bs_dtype": "float8e8m0",
+      "as_dtype": null,
+      "input_quant_mode": "none",
+      "input_scale_group_size": 0,
+      "weight_scale_group_size": 32,
+      "weight_scale_group_size_n": 0,
+      "weight_scale_type": "group",
+      "weight_scale_2_type": "none",
+      "use_int_weight_scale": false,
+      "use_fused_e8m0_scale": false,
+      "has_zero_point": false,
+      "is_fp_zero_point": false,
+      "has_bias": true,
+      "use_packed_k_layout": false
+    },
+    "tuning_config": [
+      [
+        0,
+        1,
+        {
+          "block_shape": [
+            8,
+            128,
+            128
+          ],
+          "warp_shape": [
+            8,
+            32,
+            32
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 72,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        1,
+        2,
+        {
+          "block_shape": [
+            8,
+            128,
+            128
+          ],
+          "warp_shape": [
+            8,
+            32,
+            32
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        2,
+        4,
+        {
+          "block_shape": [
+            8,
+            128,
+            64
+          ],
+          "warp_shape": [
+            8,
+            32,
+            32
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        4,
+        24,
+        {
+          "block_shape": [
+            8,
+            256,
+            64
+          ],
+          "warp_shape": [
+            8,
+            32,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        24,
+        520,
+        {
+          "block_shape": [
+            8,
+            512,
+            64
+          ],
+          "warp_shape": [
+            8,
+            64,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 3,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        520,
+        808,
+        {
+          "block_shape": [
+            8,
+            256,
+            64
+          ],
+          "warp_shape": [
+            8,
+            32,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        808,
+        1024,
+        {
+          "block_shape": [
+            16,
+            512,
+            64
+          ],
+          "warp_shape": [
+            16,
+            64,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 3,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        1024,
+        1648,
+        {
+          "block_shape": [
+            16,
+            256,
+            64
+          ],
+          "warp_shape": [
+            16,
+            32,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        1648,
+        2496,
+        {
+          "block_shape": [
+            24,
+            256,
+            64
+          ],
+          "warp_shape": [
+            24,
+            32,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        2496,
+        3360,
+        {
+          "block_shape": [
+            32,
+            256,
+            64
+          ],
+          "warp_shape": [
+            32,
+            32,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        3360,
+        4288,
+        {
+          "block_shape": [
+            40,
+            256,
+            64
+          ],
+          "warp_shape": [
+            40,
+            64,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        4288,
+        8320,
+        {
+          "block_shape": [
+            48,
+            128,
+            64
+          ],
+          "warp_shape": [
+            48,
+            32,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        8320,
+        9472,
+        {
+          "block_shape": [
+            40,
+            256,
+            64
+          ],
+          "warp_shape": [
+            40,
+            64,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        9472,
+        1073741824,
+        {
+          "block_shape": [
+            48,
+            128,
+            64
+          ],
+          "warp_shape": [
+            48,
+            32,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ]
+    ]
+  },
+  {
+    "model": "nm-testing/Qwen3-30B-A3B-MXFP4A16",
+    "shape": "w13",
+    "n": 1536,
+    "k": 2048,
+    "tp": 1,
+    "ep": 1,
+    "experts": 128,
+    "topk": 8,
+    "bias": false,
+    "source": "https://huggingface.co/nm-testing/Qwen3-30B-A3B-MXFP4A16/blob/45e10a0/config.json",
+    "layer_config": {
+      "sm_version": 90,
+      "shape_n": 1536,
+      "shape_k": 2048,
+      "pad_shape_n": 0,
+      "pad_shape_k": 0,
+      "num_experts": 128,
+      "b_dtype": "float4e2m1",
+      "a_dtype": "bfloat16",
+      "c_dtype": "bfloat16",
+      "bs_dtype": "float8e8m0",
+      "as_dtype": null,
+      "input_quant_mode": "none",
+      "input_scale_group_size": 0,
+      "weight_scale_group_size": 32,
+      "weight_scale_group_size_n": 0,
+      "weight_scale_type": "group",
+      "weight_scale_2_type": "none",
+      "use_int_weight_scale": false,
+      "use_fused_e8m0_scale": false,
+      "has_zero_point": false,
+      "is_fp_zero_point": false,
+      "has_bias": false,
+      "use_packed_k_layout": false
+    },
+    "tuning_config": [
+      [
+        0,
+        1,
+        {
+          "block_shape": [
+            8,
+            128,
+            128
+          ],
+          "warp_shape": [
+            8,
+            32,
+            32
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 24,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        1,
+        2,
+        {
+          "block_shape": [
+            8,
+            128,
+            128
+          ],
+          "warp_shape": [
+            8,
+            32,
+            32
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 48,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        2,
+        4,
+        {
+          "block_shape": [
+            8,
+            128,
+            128
+          ],
+          "warp_shape": [
+            8,
+            32,
+            32
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        4,
+        8,
+        {
+          "block_shape": [
+            8,
+            128,
+            64
+          ],
+          "warp_shape": [
+            8,
+            32,
+            32
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        8,
+        64,
+        {
+          "block_shape": [
+            8,
+            256,
+            64
+          ],
+          "warp_shape": [
+            8,
+            32,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        64,
+        520,
+        {
+          "block_shape": [
+            8,
+            512,
+            64
+          ],
+          "warp_shape": [
+            8,
+            64,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 3,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        520,
+        808,
+        {
+          "block_shape": [
+            8,
+            256,
+            64
+          ],
+          "warp_shape": [
+            8,
+            32,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        808,
+        1024,
+        {
+          "block_shape": [
+            16,
+            512,
+            64
+          ],
+          "warp_shape": [
+            16,
+            64,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 3,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        1024,
+        1648,
+        {
+          "block_shape": [
+            16,
+            256,
+            64
+          ],
+          "warp_shape": [
+            16,
+            32,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        1648,
+        2496,
+        {
+          "block_shape": [
+            24,
+            256,
+            64
+          ],
+          "warp_shape": [
+            24,
+            32,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        2496,
+        3360,
+        {
+          "block_shape": [
+            32,
+            256,
+            64
+          ],
+          "warp_shape": [
+            32,
+            32,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        3360,
+        4288,
+        {
+          "block_shape": [
+            40,
+            256,
+            64
+          ],
+          "warp_shape": [
+            40,
+            64,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        4288,
+        8320,
+        {
+          "block_shape": [
+            48,
+            128,
+            64
+          ],
+          "warp_shape": [
+            48,
+            32,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        8320,
+        9472,
+        {
+          "block_shape": [
+            40,
+            256,
+            64
+          ],
+          "warp_shape": [
+            40,
+            64,
+            64
+          ],
+          "use_stream_k": true,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        9472,
+        1073741824,
+        {
+          "block_shape": [
+            48,
+            128,
+            64
+          ],
+          "warp_shape": [
+            48,
+            32,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ]
+    ]
+  },
+  {
+    "model": "nm-testing/Qwen3-30B-A3B-MXFP4A16",
+    "shape": "w2",
+    "n": 2048,
+    "k": 768,
+    "tp": 1,
+    "ep": 1,
+    "experts": 128,
+    "topk": 8,
+    "bias": false,
+    "source": "https://huggingface.co/nm-testing/Qwen3-30B-A3B-MXFP4A16/blob/45e10a0/config.json",
+    "layer_config": {
+      "sm_version": 90,
+      "shape_n": 2048,
+      "shape_k": 768,
+      "pad_shape_n": 0,
+      "pad_shape_k": 0,
+      "num_experts": 128,
+      "b_dtype": "float4e2m1",
+      "a_dtype": "bfloat16",
+      "c_dtype": "bfloat16",
+      "bs_dtype": "float8e8m0",
+      "as_dtype": null,
+      "input_quant_mode": "none",
+      "input_scale_group_size": 0,
+      "weight_scale_group_size": 32,
+      "weight_scale_group_size_n": 0,
+      "weight_scale_type": "group",
+      "weight_scale_2_type": "none",
+      "use_int_weight_scale": false,
+      "use_fused_e8m0_scale": false,
+      "has_zero_point": false,
+      "is_fp_zero_point": false,
+      "has_bias": false,
+      "use_packed_k_layout": false
+    },
+    "tuning_config": [
+      [
+        0,
+        4,
+        {
+          "block_shape": [
+            8,
+            128,
+            128
+          ],
+          "warp_shape": [
+            8,
+            32,
+            32
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 5,
+          "num_ctas_per_sm": 1,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        4,
+        8,
+        {
+          "block_shape": [
+            8,
+            128,
+            64
+          ],
+          "warp_shape": [
+            8,
+            32,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 5,
+          "num_ctas_per_sm": 3,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        8,
+        808,
+        {
+          "block_shape": [
+            8,
+            256,
+            64
+          ],
+          "warp_shape": [
+            8,
+            32,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 5,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        808,
+        1648,
+        {
+          "block_shape": [
+            16,
+            256,
+            64
+          ],
+          "warp_shape": [
+            16,
+            32,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 5,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        1648,
+        2496,
+        {
+          "block_shape": [
+            24,
+            256,
+            64
+          ],
+          "warp_shape": [
+            24,
+            32,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 5,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        2496,
+        3360,
+        {
+          "block_shape": [
+            32,
+            256,
+            64
+          ],
+          "warp_shape": [
+            32,
+            32,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 5,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        3360,
+        4288,
+        {
+          "block_shape": [
+            40,
+            256,
+            64
+          ],
+          "warp_shape": [
+            40,
+            64,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        4288,
+        5184,
+        {
+          "block_shape": [
+            48,
+            256,
+            64
+          ],
+          "warp_shape": [
+            48,
+            64,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        5184,
+        6080,
+        {
+          "block_shape": [
+            56,
+            256,
+            64
+          ],
+          "warp_shape": [
+            56,
+            64,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        6080,
+        8320,
+        {
+          "block_shape": [
+            64,
+            256,
+            64
+          ],
+          "warp_shape": [
+            64,
+            64,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        8320,
+        9472,
+        {
+          "block_shape": [
+            40,
+            256,
+            64
+          ],
+          "warp_shape": [
+            40,
+            64,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        9472,
+        11328,
+        {
+          "block_shape": [
+            48,
+            256,
+            64
+          ],
+          "warp_shape": [
+            48,
+            64,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        11328,
+        13248,
+        {
+          "block_shape": [
+            56,
+            256,
+            64
+          ],
+          "warp_shape": [
+            56,
+            64,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        13248,
+        17024,
+        {
+          "block_shape": [
+            64,
+            256,
+            64
+          ],
+          "warp_shape": [
+            64,
+            64,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        17024,
+        17664,
+        {
+          "block_shape": [
+            48,
+            256,
+            64
+          ],
+          "warp_shape": [
+            48,
+            64,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        17664,
+        20608,
+        {
+          "block_shape": [
+            56,
+            256,
+            64
+          ],
+          "warp_shape": [
+            56,
+            64,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        20608,
+        25600,
+        {
+          "block_shape": [
+            64,
+            256,
+            64
+          ],
+          "warp_shape": [
+            64,
+            64,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        25600,
+        27904,
+        {
+          "block_shape": [
+            56,
+            256,
+            64
+          ],
+          "warp_shape": [
+            56,
+            64,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ],
+      [
+        27904,
+        1073741824,
+        {
+          "block_shape": [
+            64,
+            256,
+            64
+          ],
+          "warp_shape": [
+            64,
+            64,
+            64
+          ],
+          "use_stream_k": false,
+          "use_f16_accum": false,
+          "num_sms": 78,
+          "num_stages": 4,
+          "num_ctas_per_sm": 2,
+          "mma_type": "wgmma"
+        }
+      ]
+    ]
+  }
+]
