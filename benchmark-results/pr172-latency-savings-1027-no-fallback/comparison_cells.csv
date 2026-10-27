@@ -1,0 +1,99 @@
+suite,group,shape,m,main_us,pr_us,reduction_pct,optimization_active,reason,routed_rows,interval_lower,interval_upper,mma,block,warp,stream_k
+tp,tp4,w13,1,25.12347394721862,24.76992760680282,1.4072350868297834,True,Aligned K32 scale reuse enabled; other gates may also apply,6,4,1536,wgmma,"[8, 256, 64]","[8, 64, 64]",True
+tp,tp4,w13,4,58.67529696779708,57.351111285487534,2.256802693365667,True,Aligned K32 scale reuse enabled; other gates may also apply,24,4,1536,wgmma,"[8, 256, 64]","[8, 64, 64]",True
+tp,tp4,w13,8,101.59711822298169,98.35353164385623,3.192597030170241,True,Aligned K32 scale reuse enabled; other gates may also apply,48,4,1536,wgmma,"[8, 256, 64]","[8, 64, 64]",True
+tp,tp4,w13,16,181.24354914818008,175.40601091789657,3.220825379837877,True,Aligned K32 scale reuse enabled; other gates may also apply,96,4,1536,wgmma,"[8, 256, 64]","[8, 64, 64]",True
+tp,tp4,w13,32,315.25349085228044,304.94781408197446,3.269012737161081,True,Aligned K32 scale reuse enabled; other gates may also apply,192,4,1536,wgmma,"[8, 256, 64]","[8, 64, 64]",True
+tp,tp4,w13,64,524.0652942504639,507.3992820232438,3.1801404157198454,True,Aligned K32 scale reuse enabled; other gates may also apply,384,4,1536,wgmma,"[8, 256, 64]","[8, 64, 64]",True
+tp,tp4,w13,128,674.0776901933509,651.0488904347164,3.4163420765385255,True,Aligned K32 scale reuse enabled; other gates may also apply,768,4,1536,wgmma,"[8, 256, 64]","[8, 64, 64]",True
+tp,tp4,w2,1,15.779966416792082,15.87070459490635,-0.5750213639093005,False,WarpN32 fallback; all three PR172 gates disabled,6,2,2464,wgmma,"[8, 256, 64]","[8, 32, 64]",False
+tp,tp4,w2,4,37.717472394778724,37.78992080735992,-0.19208183364700648,False,WarpN32 fallback; all three PR172 gates disabled,24,2,2464,wgmma,"[8, 256, 64]","[8, 32, 64]",False
+tp,tp4,w2,8,61.77421852636998,61.865613865047465,-0.14795061897621142,False,WarpN32 fallback; all three PR172 gates disabled,48,2,2464,wgmma,"[8, 256, 64]","[8, 32, 64]",False
+tp,tp4,w2,16,107.3469537716936,107.42602832179526,-0.07366259341632375,False,WarpN32 fallback; all three PR172 gates disabled,96,2,2464,wgmma,"[8, 256, 64]","[8, 32, 64]",False
+tp,tp4,w2,32,177.45240118934464,177.8164371690184,-0.20514570512084607,False,WarpN32 fallback; all three PR172 gates disabled,192,2,2464,wgmma,"[8, 256, 64]","[8, 32, 64]",False
+tp,tp4,w2,64,296.43566855566075,295.7380802361596,0.23532536516271962,False,WarpN32 fallback; all three PR172 gates disabled,384,2,2464,wgmma,"[8, 256, 64]","[8, 32, 64]",False
+tp,tp4,w2,128,377.30847359708207,376.98063406939286,0.08688899153621588,False,WarpN32 fallback; all three PR172 gates disabled,768,2,2464,wgmma,"[8, 256, 64]","[8, 32, 64]",False
+tp,tp4_ep4,w13,1,26.355078253083498,26.552393285988252,-0.7486793664961633,False,MMA fallback; no WGMMA optimization,2,0,2,mma,"[8, 128, 64]","[8, 64, 32]",True
+tp,tp4_ep4,w13,4,78.31259263360194,74.33939970054865,5.07350452773605,True,Aligned K32 scale reuse enabled; other gates may also apply,9,2,384,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+tp,tp4_ep4,w13,8,117.68930740805263,112.42165425964885,4.475897823189456,True,Aligned K32 scale reuse enabled; other gates may also apply,16,2,384,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+tp,tp4_ep4,w13,16,188.51927234855822,181.66032932546457,3.6383245795750585,True,Aligned K32 scale reuse enabled; other gates may also apply,28,2,384,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+tp,tp4_ep4,w13,32,287.0587123282238,276.45739287070467,3.69308402853753,True,Aligned K32 scale reuse enabled; other gates may also apply,55,2,384,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+tp,tp4_ep4,w13,64,508.1379630969498,489.4407693153181,3.6795506613357287,True,Aligned K32 scale reuse enabled; other gates may also apply,108,2,384,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+tp,tp4_ep4,w13,128,651.3337095259369,629.9031160472045,3.2902632191922465,True,Aligned K32 scale reuse enabled; other gates may also apply,207,2,384,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+tp,tp4_ep4,w2,1,22.14771571369529,22.148839624108355,-0.005074610978361704,False,WarpN32 fallback; all three PR172 gates disabled,2,1,2,wgmma,"[8, 128, 64]","[8, 32, 32]",True
+tp,tp4_ep4,w2,4,43.96258320515406,43.87649721902201,0.1958164872394419,False,WarpN32 fallback; all three PR172 gates disabled,9,2,16,wgmma,"[8, 256, 64]","[8, 32, 64]",True
+tp,tp4_ep4,w2,8,67.97623891896947,68.08568605776463,-0.16100793532520807,False,WarpN32 fallback; all three PR172 gates disabled,16,2,16,wgmma,"[8, 256, 64]","[8, 32, 64]",True
+tp,tp4_ep4,w2,16,99.04537395660515,94.7178413985887,4.369242484674219,True,Aligned K32 scale reuse enabled; other gates may also apply,28,16,384,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+tp,tp4_ep4,w2,32,148.50809442995433,142.71931751009413,3.89795380654524,True,Aligned K32 scale reuse enabled; other gates may also apply,55,16,384,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+tp,tp4_ep4,w2,64,257.28418121917304,248.73017492474395,3.324730752545635,True,Aligned K32 scale reuse enabled; other gates may also apply,108,16,384,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+tp,tp4_ep4,w2,128,331.5546399080485,319.5238498866038,3.6285995046793085,True,Aligned K32 scale reuse enabled; other gates may also apply,207,16,384,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+tp,tp8,w13,1,21.560006026534943,21.264002121075023,1.3729305320954621,False,MMA fallback; no WGMMA optimization,6,0,8,mma,"[8, 128, 64]","[8, 64, 32]",True
+tp,tp8,w13,4,42.487651630101524,40.805666378659,3.9587625743261357,True,Aligned K32 scale reuse enabled; other gates may also apply,24,8,1536,wgmma,"[8, 256, 64]","[8, 64, 64]",True
+tp,tp8,w13,8,65.23966608047829,62.901789205817465,3.583520601986012,True,Aligned K32 scale reuse enabled; other gates may also apply,48,8,1536,wgmma,"[8, 256, 64]","[8, 64, 64]",True
+tp,tp8,w13,16,113.33157183836673,108.57991671587116,4.192702038291996,True,Aligned K32 scale reuse enabled; other gates may also apply,96,8,1536,wgmma,"[8, 256, 64]","[8, 64, 64]",True
+tp,tp8,w13,32,187.39479298545456,180.47367144416967,3.6933371685637484,True,Aligned K32 scale reuse enabled; other gates may also apply,192,8,1536,wgmma,"[8, 256, 64]","[8, 64, 64]",True
+tp,tp8,w13,64,313.1847742195487,301.7048047450484,3.665557977110523,True,Aligned K32 scale reuse enabled; other gates may also apply,384,8,1536,wgmma,"[8, 256, 64]","[8, 64, 64]",True
+tp,tp8,w13,128,401.03206941335964,386.74805657798385,3.5618131129190767,True,Aligned K32 scale reuse enabled; other gates may also apply,768,8,1536,wgmma,"[8, 256, 64]","[8, 64, 64]",True
+tp,tp8,w2,1,12.385903315579402,12.513459036655075,-1.029845929083173,False,WarpN32 fallback; all three PR172 gates disabled,6,4,2032,wgmma,"[8, 128, 64]","[8, 32, 64]",False
+tp,tp8,w2,4,24.157830492877302,24.379969156414962,-0.9195306822073812,False,WarpN32 fallback; all three PR172 gates disabled,24,4,2032,wgmma,"[8, 128, 64]","[8, 32, 64]",False
+tp,tp8,w2,8,39.35843523126225,39.53079429156115,-0.4379215263161651,False,WarpN32 fallback; all three PR172 gates disabled,48,4,2032,wgmma,"[8, 128, 64]","[8, 32, 64]",False
+tp,tp8,w2,16,65.27284535909558,65.25897855350425,0.02124437124664258,False,WarpN32 fallback; all three PR172 gates disabled,96,4,2032,wgmma,"[8, 128, 64]","[8, 32, 64]",False
+tp,tp8,w2,32,106.01081209603763,106.02909601151674,-0.01724721763527448,False,WarpN32 fallback; all three PR172 gates disabled,192,4,2032,wgmma,"[8, 128, 64]","[8, 32, 64]",False
+tp,tp8,w2,64,172.69694261427756,172.2797997055746,0.2415462036491678,False,WarpN32 fallback; all three PR172 gates disabled,384,4,2032,wgmma,"[8, 128, 64]","[8, 32, 64]",False
+tp,tp8,w2,128,220.21757048303414,219.5882640638196,0.2857657623931642,False,WarpN32 fallback; all three PR172 gates disabled,768,4,2032,wgmma,"[8, 128, 64]","[8, 32, 64]",False
+tp,tp8_ep8,w13,1,26.587405997075372,26.602383042570168,-0.05633135288354296,False,MMA fallback; no WGMMA optimization,2,0,2,mma,"[8, 128, 64]","[8, 64, 32]",True
+tp,tp8_ep8,w13,4,58.349652970987066,56.22625983515054,3.639084429332129,True,Aligned K32 scale reuse enabled; other gates may also apply,6,2,192,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+tp,tp8_ep8,w13,8,71.28975281910584,68.2212987050714,4.304200804034886,True,Aligned K32 scale reuse enabled; other gates may also apply,9,2,192,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+tp,tp8_ep8,w13,16,117.26312742098594,112.74559102669309,3.8524781776239525,True,Aligned K32 scale reuse enabled; other gates may also apply,16,2,192,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+tp,tp8_ep8,w13,32,167.6661262721916,161.50646837598362,3.6737640650254644,True,Aligned K32 scale reuse enabled; other gates may also apply,33,2,192,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+tp,tp8_ep8,w13,64,279.08270860325945,269.86219455068425,3.3038643270740797,True,Aligned K32 scale reuse enabled; other gates may also apply,62,2,192,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+tp,tp8_ep8,w13,128,336.9794415228857,327.81147661290413,2.720630335355012,True,Aligned K32 scale reuse enabled; other gates may also apply,108,2,192,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+tp,tp8_ep8,w2,1,22.082349594187967,22.100255103210632,-0.08108516236595698,False,WarpN32 fallback; all three PR172 gates disabled,2,1,2,wgmma,"[8, 128, 64]","[8, 32, 32]",True
+tp,tp8_ep8,w2,4,34.49188176264313,34.53648752111827,-0.1293224845837493,False,WarpN32 fallback; all three PR172 gates disabled,6,2,16,wgmma,"[8, 256, 64]","[8, 32, 64]",True
+tp,tp8_ep8,w2,8,43.411275683486735,43.551120244220655,-0.32213879581317606,False,WarpN32 fallback; all three PR172 gates disabled,9,2,16,wgmma,"[8, 256, 64]","[8, 32, 64]",True
+tp,tp8_ep8,w2,16,67.96039994828433,67.65998204376604,0.4420484646160183,False,WarpN32 fallback; all three PR172 gates disabled,16,2,16,wgmma,"[8, 256, 64]","[8, 32, 64]",True
+tp,tp8_ep8,w2,32,87.95422364664526,83.64971123583051,4.8940371847383535,True,Aligned K32 scale reuse enabled; other gates may also apply,33,16,192,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+tp,tp8_ep8,w2,64,142.42301363090436,137.15370324384793,3.699760490051196,True,Aligned K32 scale reuse enabled; other gates may also apply,62,16,192,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+tp,tp8_ep8,w2,128,172.53501740485052,166.44319852914575,3.530772458445597,True,Aligned K32 scale reuse enabled; other gates may also apply,108,16,192,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+model,nm-testing/Qwen3-30B-A3B-MXFP4A16,w13,1,20.907774330885502,20.74054246076407,0.7998549605272687,False,WarpN32 fallback; all three PR172 gates disabled,8,4,8,wgmma,"[8, 128, 64]","[8, 32, 32]",True
+model,nm-testing/Qwen3-30B-A3B-MXFP4A16,w13,4,39.53224896403458,39.344464917824226,0.47501483252621046,False,WarpN32 fallback; all three PR172 gates disabled,32,8,64,wgmma,"[8, 256, 64]","[8, 32, 64]",True
+model,nm-testing/Qwen3-30B-A3B-MXFP4A16,w13,8,58.24422184210612,58.28529084622781,-0.0705117225757057,False,WarpN32 fallback; all three PR172 gates disabled,64,8,64,wgmma,"[8, 256, 64]","[8, 32, 64]",True
+model,nm-testing/Qwen3-30B-A3B-MXFP4A16,w13,16,95.63944815036072,91.63051512993943,4.1917149230290445,True,Aligned K32 scale reuse enabled; other gates may also apply,128,64,520,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+model,nm-testing/Qwen3-30B-A3B-MXFP4A16,w13,32,110.27478321831472,106.45709136824289,3.4619808252207784,True,Aligned K32 scale reuse enabled; other gates may also apply,256,64,520,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+model,nm-testing/Qwen3-30B-A3B-MXFP4A16,w13,64,130.57850720774405,126.24918369726248,3.31549471889262,True,Aligned K32 scale reuse enabled; other gates may also apply,512,64,520,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+model,nm-testing/Qwen3-30B-A3B-MXFP4A16,w13,128,145.4360333452814,144.3396276748113,0.7538748446659693,True,Aligned K32 scale reuse enabled; other gates may also apply,1024,808,1024,wgmma,"[16, 512, 64]","[16, 64, 64]",True
+model,nm-testing/Qwen3-30B-A3B-MXFP4A16,w2,1,13.091125952910586,12.784299649112686,2.343773216311329,False,WarpN32 fallback; all three PR172 gates disabled,8,4,8,wgmma,"[8, 128, 64]","[8, 32, 64]",False
+model,nm-testing/Qwen3-30B-A3B-MXFP4A16,w2,4,26.94055982470237,26.79848882611749,0.5273498379740782,False,WarpN32 fallback; all three PR172 gates disabled,32,8,808,wgmma,"[8, 256, 64]","[8, 32, 64]",False
+model,nm-testing/Qwen3-30B-A3B-MXFP4A16,w2,8,37.83070806911651,37.3376952657498,1.30320797185709,False,WarpN32 fallback; all three PR172 gates disabled,64,8,808,wgmma,"[8, 256, 64]","[8, 32, 64]",False
+model,nm-testing/Qwen3-30B-A3B-MXFP4A16,w2,16,57.92643779430499,57.841521974610146,0.14659251099882198,False,WarpN32 fallback; all three PR172 gates disabled,128,8,808,wgmma,"[8, 256, 64]","[8, 32, 64]",False
+model,nm-testing/Qwen3-30B-A3B-MXFP4A16,w2,32,68.60960608250872,68.50281338641594,0.15565268799875298,False,WarpN32 fallback; all three PR172 gates disabled,256,8,808,wgmma,"[8, 256, 64]","[8, 32, 64]",False
+model,nm-testing/Qwen3-30B-A3B-MXFP4A16,w2,64,78.57108579332755,78.63454530049927,-0.08076699784782537,False,WarpN32 fallback; all three PR172 gates disabled,512,8,808,wgmma,"[8, 256, 64]","[8, 32, 64]",False
+model,nm-testing/Qwen3-30B-A3B-MXFP4A16,w2,128,85.37844238131248,85.03478087200817,0.4025155527779156,False,WarpN32 fallback; all three PR172 gates disabled,1024,808,1648,wgmma,"[16, 256, 64]","[16, 32, 64]",False
+model,openai/gpt-oss-120b,w13,1,36.56228000784286,36.52655215419442,0.09771779451602791,False,WarpN32 fallback; all three PR172 gates disabled,4,2,4,wgmma,"[8, 256, 64]","[8, 32, 64]",True
+model,openai/gpt-oss-120b,w13,4,95.64080396753758,92.55001611824684,3.2316623460628913,True,Aligned K32 scale reuse enabled; other gates may also apply,16,4,520,wgmma,"[8, 256, 64]","[8, 64, 64]",True
+model,openai/gpt-oss-120b,w13,8,156.6796595703674,152.06247727262968,2.9468932408958093,True,Aligned K32 scale reuse enabled; other gates may also apply,32,4,520,wgmma,"[8, 256, 64]","[8, 64, 64]",True
+model,openai/gpt-oss-120b,w13,16,293.6739781399749,285.8176653995196,2.6751817747743045,True,Aligned K32 scale reuse enabled; other gates may also apply,64,4,520,wgmma,"[8, 256, 64]","[8, 64, 64]",True
+model,openai/gpt-oss-120b,w13,32,453.262507372228,440.342654109939,2.850412962058424,True,Aligned K32 scale reuse enabled; other gates may also apply,128,4,520,wgmma,"[8, 256, 64]","[8, 64, 64]",True
+model,openai/gpt-oss-120b,w13,64,633.0825550976316,618.0430621385246,2.375597437965671,True,Aligned K32 scale reuse enabled; other gates may also apply,256,4,520,wgmma,"[8, 256, 64]","[8, 64, 64]",True
+model,openai/gpt-oss-120b,w13,128,735.6795080671629,713.6665772962265,2.9921902852467097,True,Aligned K32 scale reuse enabled; other gates may also apply,512,4,520,wgmma,"[8, 256, 64]","[8, 64, 64]",True
+model,openai/gpt-oss-120b,w2,1,26.378512079789665,26.505755469735206,-0.48237516036027106,False,WarpN32 fallback; all three PR172 gates disabled,4,2,4,wgmma,"[8, 128, 64]","[8, 32, 32]",True
+model,openai/gpt-oss-120b,w2,4,61.06270538888974,60.972204757979085,0.14820933716297446,False,WarpN32 fallback; all three PR172 gates disabled,16,4,24,wgmma,"[8, 256, 64]","[8, 32, 64]",True
+model,openai/gpt-oss-120b,w2,8,84.59749513420886,81.26529553463934,3.9388868361683538,True,Aligned K32 scale reuse enabled; other gates may also apply,32,24,520,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+model,openai/gpt-oss-120b,w2,16,153.99789991747048,148.16707527197312,3.786301403215353,True,Aligned K32 scale reuse enabled; other gates may also apply,64,24,520,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+model,openai/gpt-oss-120b,w2,32,232.0862919126605,224.03338224814206,3.469791170410419,True,Aligned K32 scale reuse enabled; other gates may also apply,128,24,520,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+model,openai/gpt-oss-120b,w2,64,320.4669156330764,310.99262272289354,2.956402813521808,True,Aligned K32 scale reuse enabled; other gates may also apply,256,24,520,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+model,openai/gpt-oss-120b,w2,128,369.7637477598821,359.472899422413,2.783087417253194,True,Aligned K32 scale reuse enabled; other gates may also apply,512,24,520,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+model,openai/gpt-oss-20b,w13,1,36.77481221013076,36.65911395135481,0.3146127792981068,False,WarpN32 fallback; all three PR172 gates disabled,4,2,4,wgmma,"[8, 256, 64]","[8, 32, 64]",True
+model,openai/gpt-oss-20b,w13,4,82.82291960494663,79.92378758695571,3.500398237371205,True,Aligned K32 scale reuse enabled; other gates may also apply,16,4,128,wgmma,"[8, 256, 64]","[8, 64, 64]",True
+model,openai/gpt-oss-20b,w13,8,128.70353039693026,124.58269869269375,3.201801606783894,True,Aligned K32 scale reuse enabled; other gates may also apply,32,4,128,wgmma,"[8, 256, 64]","[8, 64, 64]",True
+model,openai/gpt-oss-20b,w13,16,167.18664142552984,162.34908065192076,2.8935091538182967,True,Aligned K32 scale reuse enabled; other gates may also apply,64,4,128,wgmma,"[8, 256, 64]","[8, 64, 64]",True
+model,openai/gpt-oss-20b,w13,32,184.60124963538482,179.84634593340962,2.5757700510515735,True,Aligned K32 scale reuse enabled; other gates may also apply,128,4,128,wgmma,"[8, 256, 64]","[8, 64, 64]",True
+model,openai/gpt-oss-20b,w13,64,207.27341043364748,203.89919933397107,1.6279034983874952,True,Aligned K32 scale reuse enabled; other gates may also apply,256,200,264,wgmma,"[16, 256, 64]","[16, 64, 64]",True
+model,openai/gpt-oss-20b,w13,128,239.50600908728723,239.94893156100727,-0.1849316747450036,False,WarpN32 fallback; all three PR172 gates disabled,512,408,632,wgmma,"[24, 256, 64]","[24, 32, 64]",True
+model,openai/gpt-oss-20b,w2,1,26.405811186330492,26.16836285926616,0.8992275427132213,False,WarpN32 fallback; all three PR172 gates disabled,4,2,4,wgmma,"[8, 128, 64]","[8, 32, 32]",True
+model,openai/gpt-oss-20b,w2,4,51.292514399670246,51.01334440334884,0.5442704448959557,False,WarpN32 fallback; all three PR172 gates disabled,16,4,48,wgmma,"[8, 256, 64]","[8, 32, 64]",True
+model,openai/gpt-oss-20b,w2,8,79.31892598290602,79.2912361041355,0.03490954829177273,False,WarpN32 fallback; all three PR172 gates disabled,32,4,48,wgmma,"[8, 256, 64]","[8, 32, 64]",True
+model,openai/gpt-oss-20b,w2,16,90.5548135606549,87.02278855121628,3.9004276753027867,True,Aligned K32 scale reuse enabled; other gates may also apply,64,48,128,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+model,openai/gpt-oss-20b,w2,32,97.38244042098503,93.71914548626306,3.761761277377651,True,Aligned K32 scale reuse enabled; other gates may also apply,128,48,128,wgmma,"[8, 512, 64]","[8, 64, 64]",True
+model,openai/gpt-oss-20b,w2,64,110.25073916354413,108.09156596800003,1.9584206073586685,True,Aligned K32 scale reuse enabled; other gates may also apply,256,200,264,wgmma,"[16, 512, 64]","[16, 64, 64]",True
+model,openai/gpt-oss-20b,w2,128,126.87165936035602,126.7935719257946,0.061548367030994644,False,WarpN32 fallback; all three PR172 gates disabled,512,408,632,wgmma,"[24, 256, 64]","[24, 32, 64]",True
