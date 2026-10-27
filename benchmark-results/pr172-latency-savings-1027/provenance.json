@@ -1,0 +1,24 @@
+{
+  "suites": {
+    "tp": {
+      "active_cases": 32,
+      "total_cases": 56,
+      "reduction_range_pct": [
+        1.4072350868297834,
+        5.07350452773605
+      ]
+    },
+    "model": {
+      "active_cases": 23,
+      "total_cases": 42,
+      "reduction_range_pct": [
+        0.7538748446659693,
+        4.1917149230290445
+      ]
+    }
+  },
+  "source_commit": "013003a7821e5746fef5ee90d13de7c1b52395a2",
+  "source_path": "benchmark-results/pr172-active-paths-1027/all_cells_with_scope.csv",
+  "csv_sha256": "e7d7cb8dfbc122138ab09d4fb841e7ed0fedceb60f77d08f57a4b23e2fcf98dd",
+  "plot_scope": "Existing native-tactic measurements only; not new warm-graph ablation data."
+}
