@@ -1,0 +1,44 @@
+suite,group,shape,m,main_us,pr_us,reduction_pct,optimization_active,reason,routed_rows,interval_lower,interval_upper,mma,block,warp,stream_k
+tp,tp4,w2,1,15.779966416792082,15.87070459490635,-0.5750213639093005,False,WarpN32 fallback; all three PR172 gates disabled,6,2,2464,wgmma,"[8, 256, 64]","[8, 32, 64]",False
+tp,tp4,w2,4,37.717472394778724,37.78992080735992,-0.19208183364700648,False,WarpN32 fallback; all three PR172 gates disabled,24,2,2464,wgmma,"[8, 256, 64]","[8, 32, 64]",False
+tp,tp4,w2,8,61.77421852636998,61.865613865047465,-0.14795061897621142,False,WarpN32 fallback; all three PR172 gates disabled,48,2,2464,wgmma,"[8, 256, 64]","[8, 32, 64]",False
+tp,tp4,w2,16,107.3469537716936,107.42602832179526,-0.07366259341632375,False,WarpN32 fallback; all three PR172 gates disabled,96,2,2464,wgmma,"[8, 256, 64]","[8, 32, 64]",False
+tp,tp4,w2,32,177.45240118934464,177.8164371690184,-0.20514570512084607,False,WarpN32 fallback; all three PR172 gates disabled,192,2,2464,wgmma,"[8, 256, 64]","[8, 32, 64]",False
+tp,tp4,w2,64,296.43566855566075,295.7380802361596,0.23532536516271962,False,WarpN32 fallback; all three PR172 gates disabled,384,2,2464,wgmma,"[8, 256, 64]","[8, 32, 64]",False
+tp,tp4,w2,128,377.30847359708207,376.98063406939286,0.08688899153621588,False,WarpN32 fallback; all three PR172 gates disabled,768,2,2464,wgmma,"[8, 256, 64]","[8, 32, 64]",False
+tp,tp4_ep4,w13,1,26.355078253083498,26.552393285988252,-0.7486793664961633,False,MMA fallback; no WGMMA optimization,2,0,2,mma,"[8, 128, 64]","[8, 64, 32]",True
+tp,tp4_ep4,w2,1,22.14771571369529,22.148839624108355,-0.005074610978361704,False,WarpN32 fallback; all three PR172 gates disabled,2,1,2,wgmma,"[8, 128, 64]","[8, 32, 32]",True
+tp,tp4_ep4,w2,4,43.96258320515406,43.87649721902201,0.1958164872394419,False,WarpN32 fallback; all three PR172 gates disabled,9,2,16,wgmma,"[8, 256, 64]","[8, 32, 64]",True
+tp,tp4_ep4,w2,8,67.97623891896947,68.08568605776463,-0.16100793532520807,False,WarpN32 fallback; all three PR172 gates disabled,16,2,16,wgmma,"[8, 256, 64]","[8, 32, 64]",True
+tp,tp8,w13,1,21.560006026534943,21.264002121075023,1.3729305320954621,False,MMA fallback; no WGMMA optimization,6,0,8,mma,"[8, 128, 64]","[8, 64, 32]",True
+tp,tp8,w2,1,12.385903315579402,12.513459036655075,-1.029845929083173,False,WarpN32 fallback; all three PR172 gates disabled,6,4,2032,wgmma,"[8, 128, 64]","[8, 32, 64]",False
+tp,tp8,w2,4,24.157830492877302,24.379969156414962,-0.9195306822073812,False,WarpN32 fallback; all three PR172 gates disabled,24,4,2032,wgmma,"[8, 128, 64]","[8, 32, 64]",False
+tp,tp8,w2,8,39.35843523126225,39.53079429156115,-0.4379215263161651,False,WarpN32 fallback; all three PR172 gates disabled,48,4,2032,wgmma,"[8, 128, 64]","[8, 32, 64]",False
+tp,tp8,w2,16,65.27284535909558,65.25897855350425,0.02124437124664258,False,WarpN32 fallback; all three PR172 gates disabled,96,4,2032,wgmma,"[8, 128, 64]","[8, 32, 64]",False
+tp,tp8,w2,32,106.01081209603763,106.02909601151674,-0.01724721763527448,False,WarpN32 fallback; all three PR172 gates disabled,192,4,2032,wgmma,"[8, 128, 64]","[8, 32, 64]",False
+tp,tp8,w2,64,172.69694261427756,172.2797997055746,0.2415462036491678,False,WarpN32 fallback; all three PR172 gates disabled,384,4,2032,wgmma,"[8, 128, 64]","[8, 32, 64]",False
+tp,tp8,w2,128,220.21757048303414,219.5882640638196,0.2857657623931642,False,WarpN32 fallback; all three PR172 gates disabled,768,4,2032,wgmma,"[8, 128, 64]","[8, 32, 64]",False
+tp,tp8_ep8,w13,1,26.587405997075372,26.602383042570168,-0.05633135288354296,False,MMA fallback; no WGMMA optimization,2,0,2,mma,"[8, 128, 64]","[8, 64, 32]",True
+tp,tp8_ep8,w2,1,22.082349594187967,22.100255103210632,-0.08108516236595698,False,WarpN32 fallback; all three PR172 gates disabled,2,1,2,wgmma,"[8, 128, 64]","[8, 32, 32]",True
+tp,tp8_ep8,w2,4,34.49188176264313,34.53648752111827,-0.1293224845837493,False,WarpN32 fallback; all three PR172 gates disabled,6,2,16,wgmma,"[8, 256, 64]","[8, 32, 64]",True
+tp,tp8_ep8,w2,8,43.411275683486735,43.551120244220655,-0.32213879581317606,False,WarpN32 fallback; all three PR172 gates disabled,9,2,16,wgmma,"[8, 256, 64]","[8, 32, 64]",True
+tp,tp8_ep8,w2,16,67.96039994828433,67.65998204376604,0.4420484646160183,False,WarpN32 fallback; all three PR172 gates disabled,16,2,16,wgmma,"[8, 256, 64]","[8, 32, 64]",True
+model,nm-testing/Qwen3-30B-A3B-MXFP4A16,w13,1,20.907774330885502,20.74054246076407,0.7998549605272687,False,WarpN32 fallback; all three PR172 gates disabled,8,4,8,wgmma,"[8, 128, 64]","[8, 32, 32]",True
+model,nm-testing/Qwen3-30B-A3B-MXFP4A16,w13,4,39.53224896403458,39.344464917824226,0.47501483252621046,False,WarpN32 fallback; all three PR172 gates disabled,32,8,64,wgmma,"[8, 256, 64]","[8, 32, 64]",True
+model,nm-testing/Qwen3-30B-A3B-MXFP4A16,w13,8,58.24422184210612,58.28529084622781,-0.0705117225757057,False,WarpN32 fallback; all three PR172 gates disabled,64,8,64,wgmma,"[8, 256, 64]","[8, 32, 64]",True
+model,nm-testing/Qwen3-30B-A3B-MXFP4A16,w2,1,13.091125952910586,12.784299649112686,2.343773216311329,False,WarpN32 fallback; all three PR172 gates disabled,8,4,8,wgmma,"[8, 128, 64]","[8, 32, 64]",False
+model,nm-testing/Qwen3-30B-A3B-MXFP4A16,w2,4,26.94055982470237,26.79848882611749,0.5273498379740782,False,WarpN32 fallback; all three PR172 gates disabled,32,8,808,wgmma,"[8, 256, 64]","[8, 32, 64]",False
+model,nm-testing/Qwen3-30B-A3B-MXFP4A16,w2,8,37.83070806911651,37.3376952657498,1.30320797185709,False,WarpN32 fallback; all three PR172 gates disabled,64,8,808,wgmma,"[8, 256, 64]","[8, 32, 64]",False
+model,nm-testing/Qwen3-30B-A3B-MXFP4A16,w2,16,57.92643779430499,57.841521974610146,0.14659251099882198,False,WarpN32 fallback; all three PR172 gates disabled,128,8,808,wgmma,"[8, 256, 64]","[8, 32, 64]",False
+model,nm-testing/Qwen3-30B-A3B-MXFP4A16,w2,32,68.60960608250872,68.50281338641594,0.15565268799875298,False,WarpN32 fallback; all three PR172 gates disabled,256,8,808,wgmma,"[8, 256, 64]","[8, 32, 64]",False
+model,nm-testing/Qwen3-30B-A3B-MXFP4A16,w2,64,78.57108579332755,78.63454530049927,-0.08076699784782537,False,WarpN32 fallback; all three PR172 gates disabled,512,8,808,wgmma,"[8, 256, 64]","[8, 32, 64]",False
+model,nm-testing/Qwen3-30B-A3B-MXFP4A16,w2,128,85.37844238131248,85.03478087200817,0.4025155527779156,False,WarpN32 fallback; all three PR172 gates disabled,1024,808,1648,wgmma,"[16, 256, 64]","[16, 32, 64]",False
+model,openai/gpt-oss-120b,w13,1,36.56228000784286,36.52655215419442,0.09771779451602791,False,WarpN32 fallback; all three PR172 gates disabled,4,2,4,wgmma,"[8, 256, 64]","[8, 32, 64]",True
+model,openai/gpt-oss-120b,w2,1,26.378512079789665,26.505755469735206,-0.48237516036027106,False,WarpN32 fallback; all three PR172 gates disabled,4,2,4,wgmma,"[8, 128, 64]","[8, 32, 32]",True
+model,openai/gpt-oss-120b,w2,4,61.06270538888974,60.972204757979085,0.14820933716297446,False,WarpN32 fallback; all three PR172 gates disabled,16,4,24,wgmma,"[8, 256, 64]","[8, 32, 64]",True
+model,openai/gpt-oss-20b,w13,1,36.77481221013076,36.65911395135481,0.3146127792981068,False,WarpN32 fallback; all three PR172 gates disabled,4,2,4,wgmma,"[8, 256, 64]","[8, 32, 64]",True
+model,openai/gpt-oss-20b,w13,128,239.50600908728723,239.94893156100727,-0.1849316747450036,False,WarpN32 fallback; all three PR172 gates disabled,512,408,632,wgmma,"[24, 256, 64]","[24, 32, 64]",True
+model,openai/gpt-oss-20b,w2,1,26.405811186330492,26.16836285926616,0.8992275427132213,False,WarpN32 fallback; all three PR172 gates disabled,4,2,4,wgmma,"[8, 128, 64]","[8, 32, 32]",True
+model,openai/gpt-oss-20b,w2,4,51.292514399670246,51.01334440334884,0.5442704448959557,False,WarpN32 fallback; all three PR172 gates disabled,16,4,48,wgmma,"[8, 256, 64]","[8, 32, 64]",True
+model,openai/gpt-oss-20b,w2,8,79.31892598290602,79.2912361041355,0.03490954829177273,False,WarpN32 fallback; all three PR172 gates disabled,32,4,48,wgmma,"[8, 256, 64]","[8, 32, 64]",True
+model,openai/gpt-oss-20b,w2,128,126.87165936035602,126.7935719257946,0.061548367030994644,False,WarpN32 fallback; all three PR172 gates disabled,512,408,632,wgmma,"[24, 256, 64]","[24, 32, 64]",True
